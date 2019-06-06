@@ -1,7 +1,9 @@
 $(document).ready(function(){
     var currentQuiz=null;
+    var scored=null;
     $("#startButton").click(function(){
         if(currentQuiz==null){
+            scored=0;
             currentQuiz=0;
             $("#question").text(questions[0].question);
             $("#options").empty();
@@ -13,16 +15,18 @@ $(document).ready(function(){
         else{
             $.each($(":radio"),function(i,val){
                 if(val.checked){
-                    if(isNaN(questions[currentQuiz].answers[i][1])){
-                        var finalResult = questions[currentQuiz].answers[i][1];
-                        $("#question").text(finalAnswers[finalResult][0]);
+                    if(currentQuiz==9){
+                        scored += questions[currentQuiz].answers[i][1];
+                        scored*=10;
+                        $("#question").text("You scored: ");
                         $("#options").empty();
-                        $("#options").append(finalAnswers[finalResult][1]+"<br><br>");
+                        $("#options").append(scored+"%"+"<br><br>");
                         currentQuiz=null;
                         $("startButton").attr("value","重新開始");
                     }
                     else{
-                        currentQuiz=questions[currentQuiz].answers[i][1]-1;
+                        scored += questions[currentQuiz].answers[i][1];
+                        currentQuiz++;
                         $("#question").text(questions[currentQuiz].question);
                         $("#options").empty();
                         for(var x=0; x<questions[currentQuiz].answers.length; x++){

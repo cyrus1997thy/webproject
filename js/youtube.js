@@ -25,7 +25,6 @@ function onYouTubeIframeAPIReady(){
 
 function onPlayerReady(event){
     $("#playButton").click(function(){
-        $("h2").text(player.getVideoData().title);
         player.playVideo();
     });
 }

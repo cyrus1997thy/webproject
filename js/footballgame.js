@@ -1,6 +1,5 @@
 var img=new Image();
-    img.src="images/telstar18.png";
-
+    img.src="images/19.png";
 $(document).ready(function(){
             var h=window.innerHeight-5;
             var w=window.innerWidth;
@@ -49,10 +48,9 @@ $(document).ready(function(){
             
             function finalScore(){
                 if(score>bestScore){
-                    bestScore=score;
                     highScore();
                 }
-                
+                bestScore=score;
                 score=0;
                 currentBest.style.display="inline";
                 scorePoint.style.color="#0084ff";
