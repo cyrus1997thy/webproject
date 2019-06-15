@@ -1,5 +1,7 @@
 var img=new Image();
     img.src="images/19.png";
+var time=20;
+var intv;
 $(document).ready(function(){
             var h=window.innerHeight-5;
             var w=window.innerWidth;
@@ -52,6 +54,7 @@ $(document).ready(function(){
                 }
                 bestScore=score;
                 score=0;
+                time=20;
                 currentBest.style.display="inline";
                 scorePoint.style.color="#0084ff";
                 scorePoint.innerHTML=bestScore;
@@ -68,6 +71,16 @@ $(document).ready(function(){
                     uy=u*Math.sin(angle)+2;
                     dx=u*Math.cos(angle)/1.2;
                     scoreUpdate();
+                    if(score >= 10 && score%10 == 0 && time > 10){
+                        clearInterval(intv);
+                        time-=2;
+                        intv=setInterval(function(){
+                            velocity();
+                            drawBall();
+                            gameOver();
+                        },time)
+                    }
+                    console.log(time);
                 }
             }
             
@@ -82,6 +95,16 @@ $(document).ready(function(){
                     uy=u*Math.sin(angle)+2;
                     dx=u*Math.cos(angle)/1.2;
                     scoreUpdate();
+                    if(score >= 10 && score%10 == 0 && time > 10){
+                        clearInterval(intv);
+                        time-=2;
+                        intv=setInterval(function(){
+                            velocity();
+                            drawBall();
+                            gameOver();
+                        },time)
+                    }
+                    
                 }
             }
             
@@ -120,11 +143,11 @@ $(document).ready(function(){
             }
             
             window.onload=function(){
-                var intv=setInterval(function(){
+                intv=setInterval(function(){
                     velocity();
                     drawBall();
                     gameOver();
-                },20)
+                },time)
             }    
             
 });
