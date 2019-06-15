@@ -24,7 +24,6 @@ function getCookie(c_name)
 var song = document.getElementsByTagName('audio')[0];
 var played = false;
 var tillPlayed = getCookie('timePlayed');
-console.log(tillPlayed);
 function update()
 {
     if(!played){
